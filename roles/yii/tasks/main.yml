@@ -1,0 +1,11 @@
+- name: clone advanced project temaplate
+  shell: composer create-project --prefer-dist --stability=dev yiisoft/yii2-app-advanced /var/www/html/test-app creates=/var/www/html/test-app
+
+- name: update advanced project temaplate
+  shell: chdir="/var/www/html/test-app" composer update --prefer-dist -o
+
+- name: set Init run permissions
+  file: path=/var/www/html/test-app/init mode=0744
+
+- name: init project
+  shell: yes | /var/www/html/test-app/init --env=Development
